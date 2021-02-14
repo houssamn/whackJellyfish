@@ -13,6 +13,9 @@
 		BDC0A50A25D96CBC0008E47D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A50825D96CBC0008E47D /* Main.storyboard */; };
 		BDC0A50C25D96CBC0008E47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A50B25D96CBC0008E47D /* Assets.xcassets */; };
 		BDC0A50F25D96CBC0008E47D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A50D25D96CBC0008E47D /* LaunchScreen.storyboard */; };
+		BDC0A51825D98C2B0008E47D /* Jellyfish.dae in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A51725D98C2B0008E47D /* Jellyfish.dae */; };
+		BDC0A51B25D98CFA0008E47D /* Jellyfish.png in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A51A25D98CFA0008E47D /* Jellyfish.png */; };
+		BDC0A52825D98F6F0008E47D /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = BDC0A52725D98F6F0008E47D /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		BDC0A50B25D96CBC0008E47D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDC0A50E25D96CBC0008E47D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDC0A51025D96CBC0008E47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDC0A51725D98C2B0008E47D /* Jellyfish.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Jellyfish.dae; sourceTree = "<group>"; };
+		BDC0A51A25D98CFA0008E47D /* Jellyfish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jellyfish.png; sourceTree = "<group>"; };
+		BDC0A52725D98F6F0008E47D /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 		BDC0A50125D96CBC0008E47D /* WhackJellyfish */ = {
 			isa = PBXGroup;
 			children = (
+				BDC0A52725D98F6F0008E47D /* art.scnassets */,
+				BDC0A51725D98C2B0008E47D /* Jellyfish.dae */,
+				BDC0A51A25D98CFA0008E47D /* Jellyfish.png */,
 				BDC0A50225D96CBC0008E47D /* AppDelegate.swift */,
 				BDC0A50425D96CBC0008E47D /* SceneDelegate.swift */,
 				BDC0A50625D96CBC0008E47D /* ViewController.swift */,
@@ -124,9 +133,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDC0A51B25D98CFA0008E47D /* Jellyfish.png in Resources */,
+				BDC0A52825D98F6F0008E47D /* art.scnassets in Resources */,
 				BDC0A50F25D96CBC0008E47D /* LaunchScreen.storyboard in Resources */,
 				BDC0A50C25D96CBC0008E47D /* Assets.xcassets in Resources */,
 				BDC0A50A25D96CBC0008E47D /* Main.storyboard in Resources */,
+				BDC0A51825D98C2B0008E47D /* Jellyfish.dae in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

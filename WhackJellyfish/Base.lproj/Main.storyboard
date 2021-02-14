@@ -57,6 +57,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="playButton" destination="8VN-tF-aio" id="u4p-Ki-3Ez"/>
                         <outlet property="sceneView" destination="2oT-3V-Ft6" id="m1p-u4-aZg"/>
                     </connections>
                 </viewController>

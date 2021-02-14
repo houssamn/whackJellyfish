@@ -14,8 +14,10 @@ class ViewController: UIViewController {
     
     @IBAction func play(_ sender: Any) {
         self.addNode()
+        self.playButton.isEnabled = false
     }
     
+    @IBOutlet weak var playButton: UIButton!
     @IBAction func reset(_ sender: Any) {
     }
     
@@ -34,12 +36,17 @@ class ViewController: UIViewController {
     }
 
     func addNode() {
-        let node = SCNNode(geometry: SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0))
+//        let node = SCNNode(geometry: SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0))
+//
+//        node.position = SCNVector3(0,0,-1)
+//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        self.sceneView.scene.rootNode.addChildNode(node)
+        let jellyfishScene = SCNScene(named: "art.scnassets/Jellyfish.scn")
+        let jellyfish = jellyfishScene?.rootNode.childNode(withName: "Sphere", recursively: false)
         
-        node.position = SCNVector3(0,0,-1)
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        self.sceneView.scene.rootNode.addChildNode(node)
-
+        jellyfish?.position = SCNVector3(0, 0, -1)
+        self.sceneView.scene.rootNode.addChildNode(jellyfish!)
+        
     }
     
     
@@ -53,11 +60,23 @@ class ViewController: UIViewController {
         }else{
             print("Hit something")
             let result = hitTest.first!
-            let geom = result.node.geometry
-            print(geom)
-            
+            // let geom = result.node.geometry
+            let node  = result.node
+            if node.animationKeys.isEmpty{
+                self.animateNode(node: node)
+            }
         }
                 
+    }
+    
+    func animateNode(node: SCNNode) {
+        let spin = CABasicAnimation(keyPath: "position")
+        spin.fromValue = node.presentation.position
+        spin.toValue = SCNVector3(0,0,node.presentation.position.z - 1)
+        spin.autoreverses = true
+        spin.duration = 0.07
+        spin.repeatCount = 5
+        node.addAnimation(spin, forKey: "position")
     }
 
 }
