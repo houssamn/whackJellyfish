@@ -7,18 +7,29 @@
 
 import UIKit
 import ARKit
+import Each
 
 class ViewController: UIViewController {
 
+    var timer = Each(1).seconds
+    var countdown = 10
     @IBOutlet weak var sceneView: ARSCNView!
-    
+    @IBOutlet weak var timerLabel: UILabel!
+
     @IBAction func play(_ sender: Any) {
+        self.setTimer()
         self.addNode()
         self.playButton.isEnabled = false
     }
     
     @IBOutlet weak var playButton: UIButton!
     @IBAction func reset(_ sender: Any) {
+        self.timer.stop()
+        self.restoreTimer()
+        self.playButton.isEnabled = true
+        self.sceneView.scene.rootNode.enumerateChildNodes{ (node, _) in
+            node.removeFromParentNode()
+        }
     }
     
     override func viewDidLoad() {
@@ -36,11 +47,7 @@ class ViewController: UIViewController {
     }
 
     func addNode() {
-//        let node = SCNNode(geometry: SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0))
-//
-//        node.position = SCNVector3(0,0,-1)
-//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-//        self.sceneView.scene.rootNode.addChildNode(node)
+
         let jellyfishScene = SCNScene(named: "art.scnassets/Jellyfish.scn")
         let jellyfish = jellyfishScene?.rootNode.childNode(withName: "Sphere", recursively: false)
         
@@ -59,18 +66,23 @@ class ViewController: UIViewController {
             print("nothing")
         }else{
             print("Hit something")
-            let result = hitTest.first!
-            // let geom = result.node.geometry
-            let node  = result.node
-            if node.animationKeys.isEmpty{
-                SCNTransaction.begin()
-                self.animateNode(node: node)
-                SCNTransaction.completionBlock = {
-                    node.removeFromParentNode()
-                    self.addNode()
+            if(countdown > 0)
+            {
+                let result = hitTest.first!
+                // let geom = result.node.geometry
+                let node  = result.node
+                if node.animationKeys.isEmpty{
+                    SCNTransaction.begin()
+                    self.animateNode(node: node)
+                    SCNTransaction.completionBlock = {
+                        node.removeFromParentNode()
+                        self.addNode()
+                        self.restoreTimer()
+                    }
+                    SCNTransaction.commit()
                 }
-                SCNTransaction.commit()
             }
+            
             
         }
                 
@@ -85,10 +97,31 @@ class ViewController: UIViewController {
         spin.repeatCount = 5
         node.addAnimation(spin, forKey: "position")
     }
+    
+    func randomNumber(lower: CGFloat, upper: CGFloat) -> CGFloat {
+        return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(upper-lower) + lower
+    }
+    
+    func setTimer() {
+        self.timer.perform { () -> NextStep in
+            self.countdown -= 1
+            self.timerLabel.text = String(self.countdown)
+            
+            if(self.countdown == 0) {
+                self.timerLabel.text = "You Lose !"
+                return .stop
+            }
+            
+            return .continue
+        }
+    }
+    
+    func restoreTimer() {
+        self.countdown = 10
+        self.timerLabel.text = String(self.countdown)
+    }
 
 }
 
-func randomNumber(lower: CGFloat, upper: CGFloat) -> CGFloat {
-    return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(upper-lower) + lower
-}
+
 

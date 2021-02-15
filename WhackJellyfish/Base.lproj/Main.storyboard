@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2oT-3V-Ft6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VN-tF-aio">
                                 <rect key="frame" x="20" y="732" width="100" height="100"/>
@@ -41,24 +41,45 @@
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qgr-8i-NUA"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGH-Vt-VZa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-wF-G5V">
+                                        <rect key="frame" x="161.5" y="12" width="91.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Wds-wF-G5V" firstAttribute="centerX" secondItem="wGH-Vt-VZa" secondAttribute="centerX" id="0r5-0i-GbV"/>
+                                    <constraint firstItem="Wds-wF-G5V" firstAttribute="centerY" secondItem="wGH-Vt-VZa" secondAttribute="centerY" id="6jT-si-9ja"/>
+                                    <constraint firstAttribute="height" constant="50" id="idU-eZ-wKC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="wGH-Vt-VZa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9VJ-BT-ALQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8VN-tF-aio" secondAttribute="bottom" constant="30" id="CrT-NT-961"/>
                             <constraint firstItem="2oT-3V-Ft6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DZQ-S3-M6h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oF2-cq-q6j" secondAttribute="trailing" constant="20" id="NMH-jM-wMC"/>
+                            <constraint firstItem="2oT-3V-Ft6" firstAttribute="top" secondItem="wGH-Vt-VZa" secondAttribute="bottom" id="OnW-0s-cxu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oF2-cq-q6j" secondAttribute="trailing" constant="20" id="Pjm-dA-8Xt"/>
                             <constraint firstItem="2oT-3V-Ft6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UXM-kL-Wni"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oF2-cq-q6j" secondAttribute="bottom" constant="20" id="ZrG-HR-Sju"/>
+                            <constraint firstItem="wGH-Vt-VZa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="guT-zB-hWd"/>
                             <constraint firstItem="8VN-tF-aio" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="q60-Oq-JbO"/>
                             <constraint firstItem="2oT-3V-Ft6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="r02-jw-5Qh"/>
-                            <constraint firstItem="2oT-3V-Ft6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vHY-mr-abV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wGH-Vt-VZa" secondAttribute="trailing" id="wTu-n0-xNi"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playButton" destination="8VN-tF-aio" id="u4p-Ki-3Ez"/>
                         <outlet property="sceneView" destination="2oT-3V-Ft6" id="m1p-u4-aZg"/>
+                        <outlet property="timerLabel" destination="Wds-wF-G5V" id="8AA-Cf-VgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
