@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         
         let configuration = ARWorldTrackingConfiguration()
         
-        self.sceneView.debugOptions = [SCNDebugOptions.showWorldOrigin, SCNDebugOptions.showFeaturePoints]
+        self.sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         self.sceneView.session.run(configuration)
         // Do any additional setup after loading the view.
     
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         let jellyfishScene = SCNScene(named: "art.scnassets/Jellyfish.scn")
         let jellyfish = jellyfishScene?.rootNode.childNode(withName: "Sphere", recursively: false)
         
-        jellyfish?.position = SCNVector3(0, 0, -1)
+        jellyfish?.position = SCNVector3(randomNumber(lower: -1,upper: 1), randomNumber(lower: -0.5,upper: 0.5), -1)
         self.sceneView.scene.rootNode.addChildNode(jellyfish!)
         
     }
@@ -63,8 +63,15 @@ class ViewController: UIViewController {
             // let geom = result.node.geometry
             let node  = result.node
             if node.animationKeys.isEmpty{
+                SCNTransaction.begin()
                 self.animateNode(node: node)
+                SCNTransaction.completionBlock = {
+                    node.removeFromParentNode()
+                    self.addNode()
+                }
+                SCNTransaction.commit()
             }
+            
         }
                 
     }
@@ -79,5 +86,9 @@ class ViewController: UIViewController {
         node.addAnimation(spin, forKey: "position")
     }
 
+}
+
+func randomNumber(lower: CGFloat, upper: CGFloat) -> CGFloat {
+    return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(upper-lower) + lower
 }
 
